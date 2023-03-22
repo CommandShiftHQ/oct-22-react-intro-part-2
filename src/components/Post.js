@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+import "../styles/post.css";
 
 const Post = ({ postData }) => {
   const { title, author, isPublished, date, body, tags } = postData;
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setCount((prev) => prev + 1);
+  };
 
   return (
     <div className="post">
       <div className="post-heading">
         <h2>{title}</h2>
         {isPublished ? body : "Coming soon!"}
+      </div>
+      <div className="post-counter">
+        <span>Upvotes: {count}</span>
+        <button type="button" onClick={handleClick}>
+          Upvote this
+        </button>
       </div>
       <div className="post-author">Author: {author}</div>
       <div className="post-date">Published: {date}</div>
